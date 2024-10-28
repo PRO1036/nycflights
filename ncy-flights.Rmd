@@ -1,0 +1,56 @@
+---
+title: "NYC Flights"
+author: "Tim Bollé"
+format: html
+---
+
+# Packages et données
+
+Pour commencer, nous allons charger les packages. Les données que nous allons utiliser se trouvent dans le package `nycflights13`
+
+```{r}
+#| label: load-packages
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(nycflights13)
+```
+
+
+
+# Exercices
+
+## Exercice 1
+
+Il y a plusieurs tables dans le package `nycflights13`. Nous allons utiliser les tables `flights`, `airports`, `planes` et `airlines`. Affichez les données de chaque table et déterminez pour chacune comment elles sont liées (quelle variable est en commun).
+
+
+## Exercice 2
+
+Pour simplifier un peu les données, sélectionnez les colonnes suivantes pour la table `flights`: `year`, `time_hour`, `origin`, `dest`, `tailnum`, `carrier`. Mettez le résultat dans une nouvelle variable appelée `flights2`.
+
+## Exercice 3
+
+Utilisez la fonction `left_join` pour joindre les tables `flights2` et `airlines`. Quelle variable a été utilisée pour faire le join ?
+
+## Exercice 4
+
+Utilisez la fonction `left_join` pour joindre les tables `flights2` et `planes`. Que se passe-t-il ? Quelle(s) variable(s) ont été utilisées pour faire le join ?
+
+En utilisant la fonction `join_by()`, il est possible de préciser les variables à utiliser pour faire le join. Par exemple, si nous voulions joindre les tables x et y en utilisant les colonnes `a` et `b`, nous pourrions écrire `left_join(x, y, join_by(a == b))`.
+
+Utilisez cette fonction pour joindre les tables `flights2` et `planes` en précisant les variables à utiliser pour le join.
+
+
+## Exercice 5
+
+Faites la même chose pour les table `flights2` et `airports`. Quelle(s) variable(s) avez-vous utilisée pour faire le join ?
+
+Vous remarquez que la table `airports` est référencée 2 fois dans la table `flights2`. Faites deux join avec la table `airports` en utilisant une fois la variable `origin` et une fois `dest`. Vous pouvez renommer certaines colonnes pour améliorer la lisibilité, en utilisant la fonction `rename(new_name = old_name)`.
+
+## Exercice 6
+
+En utilisant un join entre les tables `flights2` et `planes`, ainsi qu'un filtre, déterminez quels avions sont présent dans la table `flights2` mais pas dans la table `planes`.
+
+La fonction `anti_join` permet de faire cela. Par exemple, si nous voulions trouver les lignes de la table `x` qui ne sont pas dans la table `y`, nous pourrions écrire `anti_join(x, y)`. Utilisez cette fonction pour répondre à la question.
